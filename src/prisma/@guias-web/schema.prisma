@@ -1,0 +1,27 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("GUIAS_WEB_DB_URL")
+}
+
+model OSSMA_GUIAS {
+    NROGUIA                 String    @db.VarChar(15)
+    LPNGUIA                 String    @db.VarChar(35)
+    DETAILVALOR             String    @db.VarChar(35)
+    CODIGOESTADO            Int
+    TIPOENVIOWEB            String    @db.VarChar(75)
+    ALMACEN                 String?   @db.VarChar(75)
+    IDGUIA                  Int       @id @default(autoincrement())
+    FECHAHORARECEPCION      DateTime? @db.DateTime(0)
+    FECHAHORAENTREGACLIENTE DateTime? @db.DateTime(0)
+    FECHAHORAGUIA           DateTime? @db.DateTime(0)
+    // FECHAGUIA               DateTime  @db.Date
+    // HORAGUIA                DateTime  @db.Time(0)
+    // FECHARECEPCIONPEDIDO    DateTime? @db.Date
+    // HORARECEPCIONPEDIDO     DateTime? @db.Time(0)
+    // FECHAENTREGACLIENTE     DateTime? @db.Date
+    // HORAENTREGACLIENTE      DateTime? @db.Time(0)
+}
