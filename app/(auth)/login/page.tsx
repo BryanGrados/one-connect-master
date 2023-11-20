@@ -1,7 +1,19 @@
 import LoginForm from "@/src/components/auth/login-form";
+import { getAuthServerSession } from "@/src/lib/auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-const LoginPage = () => {
+const isAuthenticated = async () => {
+	const session = await getAuthServerSession();
+
+	if (session?.user.id) {
+		return redirect("/dashboard");
+	}
+};
+
+const LoginPage = async () => {
+	await isAuthenticated();
+
 	return (
 		<div className="flex items-center justify-center h-screen">
 			{/* Left Panel with Image */}
