@@ -1,15 +1,15 @@
-import { authDB, guiasWebDB } from "@/src/prisma/prisma-connector";
-
-const testDB = async () => {
-	const guias = await guiasWebDB.oSSMA_GUIAS.findMany();
-
-	console.dir(guias, { depth: null });
-
-	return guias;
-};
+import LoginForm from "@/src/components/auth/login-form";
+import RegisterForm from "@/src/components/auth/register-form";
+import { getAuthServerSession } from "@/src/lib/auth";
 
 export default async function Home() {
-	const users = await testDB();
+	const session = await getAuthServerSession();
 
-	return <main>Hola Prisma</main>;
+	return (
+		<main>
+			<RegisterForm />
+			<LoginForm />
+			{JSON.stringify(session)}
+		</main>
+	);
 }

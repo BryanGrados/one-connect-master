@@ -1,6 +1,9 @@
+import UIProvider from "@/src/components/providers/UIProvider";
+import ThemeSwitcher from "@/src/components/theme/theme-switcher";
+import "@/src/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/src/styles/globals.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +18,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
+		<html lang="en" suppressHydrationWarning>
+			<body className={inter.className}>
+				<UIProvider>
+					<Toaster />
+					<ThemeSwitcher />
+					{children}
+				</UIProvider>
+			</body>
 		</html>
 	);
 }

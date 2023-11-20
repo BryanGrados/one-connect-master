@@ -15,14 +15,8 @@ model OSSMA_GUIAS {
     CODIGOESTADO            Int
     TIPOENVIOWEB            String    @db.VarChar(75)
     ALMACEN                 String?   @db.VarChar(75)
-    IDGUIA                  Int       @id @default(autoincrement())
     FECHAHORARECEPCION      DateTime? @db.DateTime(0)
     FECHAHORAENTREGACLIENTE DateTime? @db.DateTime(0)
     FECHAHORAGUIA           DateTime? @db.DateTime(0)
-    // FECHAGUIA               DateTime  @db.Date
-    // HORAGUIA                DateTime  @db.Time(0)
-    // FECHARECEPCIONPEDIDO    DateTime? @db.Date
-    // HORARECEPCIONPEDIDO     DateTime? @db.Time(0)
-    // FECHAENTREGACLIENTE     DateTime? @db.Date
-    // HORAENTREGACLIENTE      DateTime? @db.Time(0)
+    UID_GSE                 String    @id @db.VarChar(36)
 }
