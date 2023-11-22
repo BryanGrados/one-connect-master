@@ -1,36 +1,113 @@
 "use client";
 
-import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-import { Session } from "next-auth";
+import {
+	Avatar,
+	Dropdown,
+	DropdownItem,
+	DropdownMenu,
+	DropdownSection,
+	DropdownTrigger,
+} from "@nextui-org/react";
+import { CaretDown, GearSix, PaintBrush, SignOut, User } from "@phosphor-icons/react/dist/ssr";
+import type { Session } from "next-auth";
+import { signOut } from "next-auth/react";
+import { toast } from "sonner";
+
+const dropdownStyleBase =
+	"data-[hover=true]:bg-gradient-to-r data-[hover=true]:from-ele-tertiary data-[hover=true]:to-ele-quarter data-[hover=true]:text-white";
 
 const AccountAvatar = ({ user }: { user: Session["user"] }) => {
+	const handleSignOut = () => {
+		toast.promise(signOut(), {
+			loading: "Cerrando sesión...",
+			success: "Sesión cerrada",
+			error: "No se pudo cerrar sesión",
+		});
+	};
+
 	return (
-		<Dropdown placement="bottom-end">
+		<Dropdown
+			placement="bottom-end"
+			classNames={{
+				content: "bg-lay-primary text-default-300",
+			}}
+		>
 			<DropdownTrigger>
-				<div>
+				<div className="flex items-center justify-center gap-5 cursor-pointer">
 					<Avatar
 						radius="sm"
 						as="button"
-						className="transition-transform"
+						// src={user.avatar}
+						// @for testing purposes
 						src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+						alt={user.nombreUsuario}
+						name={user.nombreUsuario}
 					/>
-					<p>{user.nombreUsuario}</p>
+					<p className="items-center justify-center hidden font-sans text-sm md:flex">
+						{user.nombreUsuario}
+						<CaretDown size={12} weight="fill" className="ml-2" />
+					</p>
 				</div>
 			</DropdownTrigger>
-			<DropdownMenu aria-label="Profile Actions" variant="flat">
-				<DropdownItem key="profile" className="h-14 gap-2" textValue="Profile">
-					<p className="font-semibold">Signed in as</p>
-					<p className="font-semibold">zoey@example.com</p>
+
+			<DropdownMenu aria-label="Profile Actions" disabledKeys={["profile"]}>
+				<DropdownItem isReadOnly key="profile" className="mb-5 opacity-100">
+					<p className="text-white text-sm">Bienvenido</p>
+					<p className="text-white text-tiny">{user.correo}</p>
 				</DropdownItem>
-				<DropdownItem key="settings">My Settings</DropdownItem>
-				<DropdownItem key="team_settings">Team Settings</DropdownItem>
-				<DropdownItem key="analytics">Analytics</DropdownItem>
-				<DropdownItem key="system">System</DropdownItem>
-				<DropdownItem key="configurations">Configurations</DropdownItem>
-				<DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-				<DropdownItem key="logout" color="danger">
-					Log Out
-				</DropdownItem>
+
+				<DropdownSection
+					title="Cuenta"
+					showDivider
+					classNames={{
+						divider: "bg-gradient-to-r from-ele-primary to-ele-quarter",
+						heading: "text-other-meadow",
+					}}
+				>
+					<DropdownItem
+						startContent={<User size={20} />}
+						description="Ver datos personales"
+						classNames={{ base: dropdownStyleBase }}
+					>
+						Perfil
+					</DropdownItem>
+					<DropdownItem
+						startContent={<GearSix size={20} />}
+						description="Configuración general"
+						classNames={{ base: dropdownStyleBase }}
+					>
+						Configuración
+					</DropdownItem>
+				</DropdownSection>
+
+				<DropdownSection
+					title="Preferencias"
+					showDivider
+					classNames={{
+						divider: "bg-gradient-to-r from-ele-primary to-ele-quarter",
+						heading: "text-other-meadow",
+					}}
+				>
+					<DropdownItem
+						startContent={<PaintBrush size={20} />}
+						description="Cambiar el tema de la aplicación"
+						classNames={{ base: dropdownStyleBase }}
+					>
+						Temas
+					</DropdownItem>
+				</DropdownSection>
+
+				<DropdownSection title="Sesión">
+					<DropdownItem
+						startContent={<SignOut size={20} />}
+						color="danger"
+						description="Cerrar sesión"
+						classNames={{ base: dropdownStyleBase }}
+						onPress={handleSignOut}
+					>
+						Salir
+					</DropdownItem>
+				</DropdownSection>
 			</DropdownMenu>
 		</Dropdown>
 	);

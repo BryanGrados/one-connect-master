@@ -1,5 +1,4 @@
 import UIProvider from "@/src/components/providers/UIProvider";
-import ThemeSwitcher from "@/src/components/theme/theme-switcher";
 import "@/src/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -22,7 +21,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<UIProvider>
 					<Toaster />
-					<ThemeSwitcher />
+					{/* <ThemeSwitcher /> */}
 					{children}
 				</UIProvider>
 			</body>
