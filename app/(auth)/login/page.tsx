@@ -17,30 +17,30 @@ const LoginPage = async () => {
 	return (
 		<div className="flex items-center justify-center h-screen">
 			{/* Left Panel with Image */}
-			<div className="hidden md:flex w-1/2 h-full lg:w-[70%] bg-gradient-to-r from-purple-500 to-indigo-500">
+			<div className="hidden md:flex w-1/2 h-full lg:w-[70%] bg-gradient-to-br from-ele-primary to-ele-quarter">
 				{/* You can replace the text below with an actual image */}
-				<div className="m-auto text-white flex flex-col items-center justify-center">
-					<h1 className="text-4xl font-extrabold mb-4 text-center">
-						Bienvenido a <span className="text-indigo-200">One Connect</span>
+				<div className="flex flex-col items-center justify-center m-auto text-white">
+					<h1 className="mb-4 text-4xl font-extrabold text-center">
+						Bienvenido a <span className="text-ele-primary">One Connect</span>
 					</h1>
-					<p className="text-xl font-light mb-8 leading-relaxed text-justify">
+					<p className="mb-8 text-xl font-light leading-relaxed text-justify">
 						Siempre conectado, siempre seguro. <br />
 					</p>
 				</div>
 			</div>
 
 			{/* Right Panel with Login Form */}
-			<div className="bg-gray-200 flex-1 h-full md:w-1/2 lg:w-[30%] flex items-center justify-center">
-				<div className="m-8 w-full flex flex-col gap-5">
-					<h2 className="text-3xl font-extrabold text-center">
-						<span className="text-indigo-500">Inicia sesión</span> en tu cuenta
+			<div className="bg-lay-primary flex-1 h-full md:w-1/2 lg:w-[30%] flex items-center justify-center">
+				<div className="flex flex-col w-full gap-5 m-8">
+					<h2 className="text-3xl font-extrabold text-center text-white">
+						<span className="text-ele-primary">Inicia sesión</span> en tu cuenta
 					</h2>
 					<LoginForm />
 					{/* Support */}
 					<div>
-						<p className="text-sm text-gray-600 text-start">
+						<p className="text-sm text-start text-white">
 							Problemas para iniciar sesión?{" "}
-							<Link href="/soporte" className="underline text-indigo-500 hover:text-indigo-600">
+							<Link href="/soporte" className="text-ele-primary underline hover:text-ele-tertiary transition-colors">
 								Contacta con soporte
 							</Link>
 						</p>

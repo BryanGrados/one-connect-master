@@ -5,7 +5,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 const UIProvider = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<NextUIProvider>
+		<NextUIProvider className="bg-lay-secondary min-h-screen text-white">
 			<NextThemesProvider attribute="class" enableSystem>
 				{children}
 			</NextThemesProvider>

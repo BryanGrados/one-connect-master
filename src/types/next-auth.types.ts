@@ -1,4 +1,4 @@
-import { Rol } from "@prisma/client";
+import { Rol } from "@prisma-auth";
 import { DefaultSession } from "next-auth";
 
 interface User {

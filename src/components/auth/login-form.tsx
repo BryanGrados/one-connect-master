@@ -48,6 +48,7 @@ const LoginForm = () => {
 				type="email"
 				classNames={{
 					input: "text-base",
+					label: "group-data-[filled-within=true]:text-white",
 				}}
 				{...register("email")}
 				color={errors.email ? "danger" : "default"}
@@ -58,10 +59,12 @@ const LoginForm = () => {
 				label="Contraseña"
 				radius="sm"
 				type={isVisible ? "text" : "password"}
+				className="placeholder:!text-red-500 "
 				classNames={{
 					input: "text-base",
+					label: "group-data-[filled-within=true]:text-white",
 				}}
-				endContent={
+				endContent={ 
 					<button type="button" onClick={() => setIsVisible((prev) => !prev)}>
 						{isVisible ? <Eye size={20} /> : <EyeSlash size={20} />}
 					</button>
@@ -73,11 +76,10 @@ const LoginForm = () => {
 
 			{/* Submit button */}
 			<Button
-				variant="shadow"
-				color="secondary"
+				variant="solid"
 				disableRipple
 				radius="sm"
-				className="mt-4 group"
+				className="mt-4 group bg-ele-tertiary text-white"
 				fullWidth
 				type="submit"
 				isLoading={isPending}
